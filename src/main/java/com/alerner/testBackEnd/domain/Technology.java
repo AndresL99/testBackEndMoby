@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
@@ -25,9 +26,11 @@ public class Technology
     @Column(name = "idTechnology")
     private Long idTechnology;
 
+    @NotNull
     @Column(name = "name")
     private String name;
 
+    @NotNull
     @Column(name = "version")
     private String version;
 }

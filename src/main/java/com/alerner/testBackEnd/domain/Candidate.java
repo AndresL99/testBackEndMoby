@@ -13,6 +13,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Data
@@ -28,15 +31,19 @@ public class Candidate
     @Column(name = "idCandidate")
     private Long idCandidate;
 
+    @NotNull
     @Column(name = "firstName")
     private String firstName;
 
+    @NotNull
     @Column(name = "lastName")
     private String lastName;
 
     private TypeOfDocument typeOfDocument;
 
     @Column(name = "document")
+    @NotBlank(message = "Number of document cannot be empty ")
+    @Size(max = 8)
     private String document;
 
     @Column(name = "dateOfBirth")

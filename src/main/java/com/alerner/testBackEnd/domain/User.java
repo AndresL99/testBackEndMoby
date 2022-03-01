@@ -12,6 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Data
 @Entity
@@ -26,9 +29,17 @@ public class User
     @Column(name = "idUser")
     private Long idUser;
 
+    @Column(name = "email")
+    @NotBlank(message = "The email cannot be empty.")
+    @Email
+    private String email;
+
+    @NotBlank(message = "The username cannot be empty!")
     @Column(name = "username")
     private String username;
 
+    @NotBlank(message = "Password cannot be empty.")
+    @Size(min = 6,max = 16)
     @Column(name = "password")
     private String password;
 }
