@@ -1,6 +1,8 @@
 package com.alerner.testBackEnd.service;
 
 import com.alerner.testBackEnd.domain.Technology;
+import com.alerner.testBackEnd.exception.TechnologyExistException;
+import com.alerner.testBackEnd.exception.TechnologyNotExistException;
 import com.alerner.testBackEnd.repository.TechnologyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,11 +20,11 @@ public class TechnologyService {
     private TechnologyRepository technologyRepository;
 
 
-    public Technology addTechnology(Technology source)
+    public Technology addTechnology(Technology source) throws TechnologyExistException
     {
         if(technologyRepository.existsById(source.getIdTechnology()))
         {
-            throw new EntityExistsException();
+            throw new TechnologyExistException("The technology already exist");
         }
         else
         {
@@ -30,9 +32,9 @@ public class TechnologyService {
         }
     }
 
-    public Technology getTechnologyById(Long idTechnology)
+    public Technology getTechnologyById(Long idTechnology)throws TechnologyNotExistException
     {
-        return technologyRepository.findById(idTechnology).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+        return technologyRepository.findById(idTechnology).orElseThrow(() -> new TechnologyNotExistException("The technology not exist"));
     }
 
     public List<Technology>getAllTechnology()

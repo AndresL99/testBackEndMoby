@@ -2,6 +2,8 @@ package com.alerner.testBackEnd.service;
 
 
 import com.alerner.testBackEnd.domain.Candidate;
+import com.alerner.testBackEnd.exception.CandidateExistException;
+import com.alerner.testBackEnd.exception.CandidateNotExistException;
 import com.alerner.testBackEnd.repository.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,11 +21,11 @@ public class CandidateService
     private CandidateRepository candidateRepository;
 
 
-    public Candidate addCandidate(Candidate source)
+    public Candidate addCandidate(Candidate source)throws CandidateExistException
     {
         if(candidateRepository.existsById(source.getIdCandidate()))
         {
-            throw new EntityExistsException();
+            throw new CandidateExistException("This Candidate is already exist");
         }
         else
         {
@@ -31,9 +33,9 @@ public class CandidateService
         }
     }
 
-    public Candidate getCandidateById(Long idCandidate)
+    public Candidate getCandidateById(Long idCandidate)throws CandidateNotExistException
     {
-        return candidateRepository.findById(idCandidate).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+        return candidateRepository.findById(idCandidate).orElseThrow(() -> new CandidateNotExistException("This candidate not exist"));
     }
 
     public List<Candidate>getAllCandidate()
