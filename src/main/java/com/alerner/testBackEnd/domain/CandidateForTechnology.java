@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -21,6 +22,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "candidateForTechnology")
 public class CandidateForTechnology
 {
     @Id
@@ -31,12 +33,12 @@ public class CandidateForTechnology
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idCandidate", referencedColumnName = "idCandidate")
+    @JoinColumn(name = "id_candidate")
     private Candidate candidate;
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idTechnology", referencedColumnName = "idTechnology")
+    @JoinColumn(name = "id_technology")
     private Technology technology;
 
     @Column(name = "yearsOfExperience")
