@@ -1,7 +1,10 @@
 package com.alerner.testBackEnd.controller;
 
 import com.alerner.testBackEnd.domain.Technology;
+import com.alerner.testBackEnd.exception.TechnologyExistException;
+import com.alerner.testBackEnd.exception.TechnologyNotExistException;
 import com.alerner.testBackEnd.service.TechnologyService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/technology")
+@Log4j2
 public class TechnologyController
 {
     private TechnologyService technologyService;
@@ -28,13 +32,31 @@ public class TechnologyController
     @PostMapping
     public ResponseEntity<Technology> addTechnology(@RequestBody Technology technology)
     {
-        return new ResponseEntity<>(technologyService.addTechnology(technology), HttpStatus.CREATED);
+        try
+        {
+            return new ResponseEntity<>(technologyService.addTechnology(technology), HttpStatus.CREATED);
+        }
+        catch (TechnologyExistException e)
+        {
+            log.error(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @GetMapping("/{idTechnology}")
     public ResponseEntity<Technology> getTechnologyById(@PathVariable Long idTechnology)
     {
-        return ResponseEntity.ok(technologyService.getTechnologyById(idTechnology));
+        try
+        {
+            return ResponseEntity.ok(technologyService.getTechnologyById(idTechnology));
+        }
+        catch (TechnologyNotExistException e)
+        {
+            log.error(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @GetMapping
