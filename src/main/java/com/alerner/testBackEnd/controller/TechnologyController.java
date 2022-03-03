@@ -39,7 +39,7 @@ public class TechnologyController
         catch (TechnologyExistException e)
         {
             log.error(e.getMessage());
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
     }

@@ -57,7 +57,7 @@ public class UserController
         catch (UserExistException e)
         {
             e.getMessage();
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }
 

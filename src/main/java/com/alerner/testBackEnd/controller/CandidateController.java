@@ -51,7 +51,7 @@ public class CandidateController
         catch (CandidateExistException ex)
         {
             log.error(ex.getMessage());
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
     }
@@ -99,7 +99,7 @@ public class CandidateController
         catch (CandidateForTechnologyExistException | TechnologyExistException | CandidateExistException exception)
         {
             log.error(exception.getMessage());
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }
 

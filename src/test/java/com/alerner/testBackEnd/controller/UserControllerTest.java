@@ -62,7 +62,7 @@ public class UserControllerTest extends AbstractControllerTest
 
         ResponseEntity<User>userResponseEntity = userController.addUser(getUser());
 
-        assertEquals(HttpStatus.BAD_REQUEST.value(),userResponseEntity.getStatusCodeValue());
+        assertEquals(HttpStatus.CONFLICT.value(),userResponseEntity.getStatusCodeValue());
     }
 
     @Test

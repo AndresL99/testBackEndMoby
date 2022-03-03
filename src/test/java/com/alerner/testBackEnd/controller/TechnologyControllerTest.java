@@ -61,7 +61,7 @@ public class TechnologyControllerTest
 
         ResponseEntity<Technology>technologyResponseEntity = technologyController.addTechnology(getTechnology());
 
-        assertEquals(HttpStatus.BAD_REQUEST.value(),technologyResponseEntity.getStatusCodeValue());
+            assertEquals(HttpStatus.CONFLICT.value(),technologyResponseEntity.getStatusCodeValue());
     }
 
     @Test
