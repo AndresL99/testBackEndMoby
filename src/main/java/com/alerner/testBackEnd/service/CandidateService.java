@@ -6,7 +6,9 @@ import com.alerner.testBackEnd.domain.CandidateForTechnology;
 import com.alerner.testBackEnd.domain.Technology;
 import com.alerner.testBackEnd.domain.dto.TechnologyExperienceDto;
 import com.alerner.testBackEnd.exception.CandidateExistException;
+import com.alerner.testBackEnd.exception.CandidateForTechnologyExistException;
 import com.alerner.testBackEnd.exception.CandidateNotExistException;
+import com.alerner.testBackEnd.exception.TechnologyExistException;
 import com.alerner.testBackEnd.repository.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,7 +60,7 @@ public class CandidateService
         candidateRepository.save(source);
     }
 
-    public Candidate addTechnologyAndCandidate(Long idCandidate, Long idTechnology, Integer yearExperience)
+    public Candidate addTechnologyAndCandidate(Long idCandidate, Long idTechnology, Integer yearExperience)throws CandidateExistException, TechnologyExistException, CandidateForTechnologyExistException
     {
         Candidate candidate = getCandidateById(idCandidate);
         Technology technology = technologyService.getTechnologyById(idTechnology);
