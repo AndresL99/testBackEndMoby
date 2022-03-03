@@ -26,7 +26,7 @@ public class User
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUser")
+    @Column(name = "id_user")
     private Long idUser;
 
     @Column(name = "email")
@@ -35,7 +35,7 @@ public class User
     private String email;
 
     @NotBlank(message = "The username cannot be empty!")
-    @Column(name = "username")
+    @Column(name = "user_name")
     private String username;
 
     @NotBlank(message = "Password cannot be empty.")

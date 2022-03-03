@@ -28,15 +28,15 @@ public class Candidate
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCandidate")
+    @Column(name = "id_candidate")
     private Long idCandidate;
 
     @NotNull
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
 
     @NotNull
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     private TypeOfDocument typeOfDocument;
@@ -46,7 +46,7 @@ public class Candidate
     @Size(max = 8)
     private String document;
 
-    @Column(name = "dateOfBirth")
+    @Column(name = "date_of_birth")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd", locale = "es-Arg", timezone = "America/Buenos Aires")
     private Date dateOfBirth;
 
