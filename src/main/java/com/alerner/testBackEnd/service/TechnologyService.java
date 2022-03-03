@@ -19,6 +19,9 @@ public class TechnologyService {
     @Autowired
     private TechnologyRepository technologyRepository;
 
+    public TechnologyService(TechnologyRepository technologyRepository) {
+        this.technologyRepository = technologyRepository;
+    }
 
     public Technology addTechnology(Technology source) throws TechnologyExistException
     {
