@@ -27,7 +27,7 @@ public class CandidateForTechnology
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCandidateForTechnology")
+    @Column(name = "id_candidate_for_technology")
     private Long idCandidateForTechnology;
 
 
@@ -41,7 +41,7 @@ public class CandidateForTechnology
     @JoinColumn(name = "id_technology")
     private Technology technology;
 
-    @Column(name = "yearsOfExperience")
+    @Column(name = "years_of_experience")
     @NotBlank(message = "Years of Experience cannot be empty")
     private Integer yearsOfExperience;
 }
