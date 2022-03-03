@@ -3,6 +3,7 @@ package com.alerner.testBackEnd.utils;
 import com.alerner.testBackEnd.domain.Candidate;
 import com.alerner.testBackEnd.domain.CandidateForTechnology;
 import com.alerner.testBackEnd.domain.Technology;
+import com.alerner.testBackEnd.domain.User;
 import com.alerner.testBackEnd.domain.enums.TypeOfDocument;
 
 import java.util.ArrayList;
@@ -61,5 +62,17 @@ public class TestEntityFactory
         List<CandidateForTechnology>candidateForTechnologies = new ArrayList<>();
         candidateForTechnologies.add(getCandidateForTechnology());
         return candidateForTechnologies;
+    }
+
+    public static User getUser()
+    {
+        return User.builder().idUser(1L).email("andres@gmail.com").username("andres99").password("andres123").build();
+    }
+
+    public static List<User>getUserList()
+    {
+        List<User>users = new ArrayList<>();
+        users.add(getUser());
+        return users;
     }
 }
