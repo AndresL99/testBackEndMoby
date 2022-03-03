@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -22,7 +21,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "candidateForTechnology")
+@Table(name = "candidate_for_technology")
 public class CandidateForTechnology
 {
     @Id
@@ -31,17 +30,17 @@ public class CandidateForTechnology
     private Long idCandidateForTechnology;
 
 
-    @NotNull
+    @NotNull(message = "This field must be contain something.")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_candidate")
     private Candidate candidate;
 
-    @NotNull
+    @NotNull(message = "This field must be contain something.")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_technology")
     private Technology technology;
 
     @Column(name = "years_of_experience")
-    @NotBlank(message = "Years of Experience cannot be empty")
+    @NotNull(message = "Cannot be empty")
     private Integer yearsOfExperience;
 }

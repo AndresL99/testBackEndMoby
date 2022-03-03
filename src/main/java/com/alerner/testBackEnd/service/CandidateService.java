@@ -25,6 +25,11 @@ public class CandidateService
     private CandidateForTechnologyService candidateForTechnologyService;
     private TechnologyService technologyService;
 
+    public CandidateService(CandidateRepository candidateRepository, CandidateForTechnologyService candidateForTechnologyService, TechnologyService technologyService) {
+        this.candidateRepository = candidateRepository;
+        this.candidateForTechnologyService = candidateForTechnologyService;
+        this.technologyService = technologyService;
+    }
 
     public Candidate addCandidate(Candidate source)throws CandidateExistException
     {
@@ -78,11 +83,11 @@ public class CandidateService
             List<TechnologyExperienceDto>dtoList = new ArrayList<>();
             for(TechnologyExperienceDto technologyExperienceDto : candidateForTechnologyService.getTechnologyExperienceByCandidate(candidateForTechnology.getCandidate()))
             {
-                if(technologyExperienceDto.getName().equalsIgnoreCase(name))
-                {
+                if(technologyExperienceDto.getName().equalsIgnoreCase(name)) {
                     dtoList.add(technologyExperienceDto);
                 }
             }
+            candidates.add(candidateForTechnology.getCandidate());
         }
         return candidates;
     }
