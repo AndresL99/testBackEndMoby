@@ -106,6 +106,6 @@ public class CandidateController
     @GetMapping("/technologies/{name}")
     public ResponseEntity<List<Candidate>>getTechnologyByName(@PathVariable String name)
     {
-        return ResponseEntity.ok(candidateService.getNameOfTechnology(name));
+        return new ResponseEntity<List<Candidate>>(candidateService.getNameOfTechnology(name),HttpStatus.OK);
     }
 }
