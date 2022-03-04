@@ -1,6 +1,7 @@
 package com.alerner.testBackEnd.service;
 
 import com.alerner.testBackEnd.domain.Candidate;
+import com.alerner.testBackEnd.domain.dto.CandidateDto;
 import com.alerner.testBackEnd.exception.CandidateExistException;
 import com.alerner.testBackEnd.exception.CandidateNotExistException;
 import com.alerner.testBackEnd.repository.CandidateRepository;
@@ -130,7 +131,7 @@ public class CandidateServiceTest
         when(candidateForTechnologyService.getCandidateForTechnologyByNameOfTechnology("Java")).thenReturn(getCandidateForTechnologyList());
         when(candidateForTechnologyService.getTechnologyExperienceByCandidate(getCandidate()));
 
-        List<Candidate>candidates = candidateService.getNameOfTechnology("Java");
+        List<CandidateDto>candidates = candidateService.getNameOfTechnology("Java");
 
         assertNotNull(candidates);
     }

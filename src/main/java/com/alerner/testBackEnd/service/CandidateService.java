@@ -4,6 +4,7 @@ package com.alerner.testBackEnd.service;
 import com.alerner.testBackEnd.domain.Candidate;
 import com.alerner.testBackEnd.domain.CandidateForTechnology;
 import com.alerner.testBackEnd.domain.Technology;
+import com.alerner.testBackEnd.domain.dto.CandidateDto;
 import com.alerner.testBackEnd.domain.dto.TechnologyExperienceDto;
 import com.alerner.testBackEnd.exception.CandidateExistException;
 import com.alerner.testBackEnd.exception.CandidateForTechnologyExistException;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static com.alerner.testBackEnd.domain.converter.CandidateToDtoAndTechnologies.convertCandidateAndTechnology;
 
 @Service
 public class CandidateService
@@ -73,9 +76,9 @@ public class CandidateService
         return candidate;
     }
 
-    public List<Candidate>getNameOfTechnology(String name)
+    public List<CandidateDto>getNameOfTechnology(String name)
     {
-        List<Candidate>candidates = new ArrayList<>();
+        List<CandidateDto>candidates = new ArrayList<>();
         List<CandidateForTechnology>candidateForTechnologies = candidateForTechnologyService.getCandidateForTechnologyByNameOfTechnology(name);
 
         for(CandidateForTechnology candidateForTechnology : candidateForTechnologies)
@@ -87,7 +90,7 @@ public class CandidateService
                     dtoList.add(technologyExperienceDto);
                 }
             }
-            candidates.add(candidateForTechnology.getCandidate());
+            candidates.add(convertCandidateAndTechnology(candidateForTechnology.getCandidate(),dtoList));
         }
         return candidates;
     }

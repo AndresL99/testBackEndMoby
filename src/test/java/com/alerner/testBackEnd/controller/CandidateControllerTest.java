@@ -1,6 +1,7 @@
 package com.alerner.testBackEnd.controller;
 
 import com.alerner.testBackEnd.domain.Candidate;
+import com.alerner.testBackEnd.domain.dto.CandidateDto;
 import com.alerner.testBackEnd.service.CandidateService;
 import com.alerner.testBackEnd.service.TechnologyService;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import static com.alerner.testBackEnd.utils.TestEntityFactory.getCandidate;
 import static com.alerner.testBackEnd.utils.TestEntityFactory.getCandidateList;
+import static com.alerner.testBackEnd.utils.TestEntityFactory.getListCandidateDto;
 import static com.alerner.testBackEnd.utils.TestEntityFactory.getTechnology;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doNothing;
@@ -107,8 +109,8 @@ public class CandidateControllerTest extends AbstractControllerTest
     @Test
     void getTechnologyByNameTest()
     {
-        when(candidateService.getNameOfTechnology("NodeJs")).thenReturn(getCandidateList());
-        ResponseEntity<List<Candidate>>listResponseEntity = candidateController.getTechnologyByName("NodeJs");
+        when(candidateService.getNameOfTechnology("NodeJs")).thenReturn(getListCandidateDto());
+        ResponseEntity<List<CandidateDto>>listResponseEntity = candidateController.getTechnologyByName("NodeJs");
         assertEquals(HttpStatus.OK,listResponseEntity.getStatusCode());
         assertEquals(getCandidateList().get(0).getDocument(),listResponseEntity.getBody().get(0).getDocument());
     }

@@ -2,6 +2,7 @@ package com.alerner.testBackEnd.controller;
 
 import com.alerner.testBackEnd.domain.Candidate;
 import com.alerner.testBackEnd.domain.Technology;
+import com.alerner.testBackEnd.domain.dto.CandidateDto;
 import com.alerner.testBackEnd.exception.CandidateExistException;
 import com.alerner.testBackEnd.exception.CandidateForTechnologyExistException;
 import com.alerner.testBackEnd.exception.CandidateNotExistException;
@@ -104,8 +105,8 @@ public class CandidateController
     }
 
     @GetMapping("/technologies/{name}")
-    public ResponseEntity<List<Candidate>>getTechnologyByName(@PathVariable String name)
+    public ResponseEntity<List<CandidateDto>>getTechnologyByName(@PathVariable String name)
     {
-        return new ResponseEntity<List<Candidate>>(candidateService.getNameOfTechnology(name),HttpStatus.OK);
+        return new ResponseEntity<List<CandidateDto>>(candidateService.getNameOfTechnology(name),HttpStatus.OK);
     }
 }

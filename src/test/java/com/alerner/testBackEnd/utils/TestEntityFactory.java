@@ -4,6 +4,8 @@ import com.alerner.testBackEnd.domain.Candidate;
 import com.alerner.testBackEnd.domain.CandidateForTechnology;
 import com.alerner.testBackEnd.domain.Technology;
 import com.alerner.testBackEnd.domain.User;
+import com.alerner.testBackEnd.domain.dto.CandidateDto;
+import com.alerner.testBackEnd.domain.dto.TechnologyExperienceDto;
 import com.alerner.testBackEnd.domain.enums.TypeOfDocument;
 
 import java.util.ArrayList;
@@ -75,4 +77,40 @@ public class TestEntityFactory
         users.add(getUser());
         return users;
     }
+
+    public static TechnologyExperienceDto getTechnologyExperienceDto()
+    {
+        return TechnologyExperienceDto.builder()
+                .name("Java")
+                .version("v15.0")
+                .yearExperience(2)
+                .build();
+    }
+
+    public static List<TechnologyExperienceDto>getListTechnologyExperienceDto()
+    {
+        List<TechnologyExperienceDto>dtoList = new ArrayList<>();
+        dtoList.add(getTechnologyExperienceDto());
+        return dtoList;
+    }
+
+    public static CandidateDto getCandidateDto()
+    {
+        return CandidateDto.builder()
+                .firstName("Andres")
+                .lastName("Lerner")
+                .document("41555666")
+                .typeOfDocument(TypeOfDocument.DNI)
+                .dateOfBirth(new Date())
+                .technologyExperienceDtos(getListTechnologyExperienceDto())
+                .build();
+    }
+
+    public static List<CandidateDto>getListCandidateDto()
+    {
+        List<CandidateDto>candidateDtos = new ArrayList<>();
+        candidateDtos.add(getCandidateDto());
+        return candidateDtos;
+    }
+
 }
